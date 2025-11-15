@@ -2,7 +2,8 @@
 
 Start a worker (1 worker):
 
-    node cli.js worker start --count 1
+    node cli.js worker start --count 1 
+    (link karlo globally then) -> queuectl worker start --count 1
 
 Enqueue a quick job (complete successfully):
 
