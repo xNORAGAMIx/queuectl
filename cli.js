@@ -125,7 +125,7 @@ program
   .command('dlq list')
   .description('List jobs in Dead Letter Queue (state=dead)')
   .action(() => {
-    const rows = db.prepare('SELECT * FROM jobs WHERE state = "dead" ORDER BY updated_at DESC').all();
+    const rows = db.prepare("SELECT * FROM jobs WHERE state = 'dead' ORDER BY updated_at DESC").all();
     console.table(rows.map(r => ({
       id: r.id, command: r.command, attempts: r.attempts, max_retries: r.max_retries, updated_at: r.updated_at
     })));
@@ -135,7 +135,7 @@ program
   .command('dlq retry <jobId>')
   .description('Retry a job from DLQ (move back to pending and reset attempts)')
   .action((jobId) => {
-    const job = db.prepare('SELECT * FROM jobs WHERE id = ? AND state = "dead"').get(jobId);
+    const job = db.prepare("SELECT * FROM jobs WHERE id = ? AND state = 'dead'").get(jobId);
     if (!job) {
       console.error('DLQ job not found:', jobId);
       process.exit(1);
